@@ -79,6 +79,8 @@ public class basic_botRB extends LinearOpMode {
 
 
         leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
+        leftServo  = hardwareMap.get(Servo.class, "left_servo");
+        rightServo  = hardwareMap.get(Servo.class, "right_servo");
         rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
         armDrive = hardwareMap.get(DcMotorEx.class,  "arm_drive");
 
