@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import android.graphics.RenderNode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -39,7 +38,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -58,12 +56,13 @@ public class basic_botRB extends LinearOpMode {
     private DcMotorEx armDrive = null;
     private Servo leftServo = null;
     private Servo rightServo = null;
-    public static int armTarget=300;
+    public static int armTarget=-700;
     public static int armVelocity=200;
-    public static int armReset=0;
+    public static int armReset=-45;
     public static int armSpeed=200;
-    public static int leftClawOpen = 50;
-    public static int rightClawOpen = 50;
+    public static double leftClawOpen = -0.5;
+    public static double rightClawOpen = 0.5;
+    public static double reset = 0;
 
 
 
@@ -146,17 +145,21 @@ public class basic_botRB extends LinearOpMode {
 
             }
             if (gamepad1.x) {
-
                 leftServo.setPosition(leftClawOpen);
-            } else if (gamepad1.y) {
                 rightServo.setPosition(rightClawOpen);
+            } else if (gamepad1.y) {
+                rightServo.setPosition(reset);
+                leftServo.setPosition(reset);
 
 
             }
 
 
+
             telemetry.addData("velocity",armDrive.getVelocity());
             telemetry.addData("position",armDrive.getCurrentPosition());
+            telemetry.addData("position1",leftServo.getPosition());
+            telemetry.addData("position2",rightServo.getPosition());
 
             telemetry.update();
 
